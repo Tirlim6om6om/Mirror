@@ -160,16 +160,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
-  syncMode: 1
+  syncMode: 0
   syncInterval: 0
   stateHistoryLimit: 64
-  correctionThreshold: 0.1
+  correctionThreshold: 0.05
   oneFrameAhead: 1
   correctionMode: 1
   showGhost: 1
-  ghostDistanceThreshold: 0.1
+  ghostDistanceThreshold: 0.05
   ghostMaterial: {fileID: 2100000, guid: 411a48b4a197d4924bec3e3809bc9320, type: 2}
-  positionInterpolationSpeed: 60
+  positionInterpolationSpeed: 15
   rotationInterpolationSpeed: 10
-  teleportDistanceMultiplier: 5
+  teleportDistanceMultiplier: 10
   lineTime: 10
