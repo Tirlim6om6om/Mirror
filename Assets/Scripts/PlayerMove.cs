@@ -10,7 +10,7 @@ public class PlayerMove : NetworkBehaviour
     [SerializeField] private float moveSpeedMultiplier = 1;
     private bool local;
     private Rigidbody _rb;
-    
+    public LagCompensationSettings lagCompensationSettings = new LagCompensationSettings();
     
     public override void OnStartAuthority()
     {
@@ -18,6 +18,16 @@ public class PlayerMove : NetworkBehaviour
         transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
         TryGetComponent(out _rb);
         this.enabled = true;
+        TryGetComponent(out NetworkTransformReliable component);
+        if (isServer)
+        {
+            component.syncDirection = SyncDirection.ServerToClient;
+            component.syncMode = SyncMode.Observers;
+        }
+        else
+        {
+            component.syncDirection = SyncDirection.ClientToServer;
+        }
     }
 
     public override void OnStopAuthority()
@@ -26,7 +36,7 @@ public class PlayerMove : NetworkBehaviour
         local = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!local)
             return;

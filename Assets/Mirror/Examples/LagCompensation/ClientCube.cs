@@ -100,17 +100,17 @@ namespace Mirror.Examples.LagCompensationDemo
 
         void Update()
         {
-            // accumulated delta allows us to simulate correct low fps + deltaTime
-            // if necessary in client low fps mode.
+            // накопленная дельта позволяет нам имитировать правильный низкий fps + deltaTime
+            // при необходимости в режиме клиента с низким fps.
             accumulatedDeltaTime += Time.unscaledDeltaTime;
 
-            // simulate low fps mode. only update once per second.
-            // to simulate webgl background tabs, etc.
-            // after a while, disable low fps mode and see how it behaves.
+            // симулируем режим низкого fps. обновляется только раз в секунду.
+            // для имитации фоновых вкладок WebGL и т. д.
+            // через некоторое время отключим режим низкого fps и посмотрим, как он себя поведет.
             if (lowFpsMode && accumulatedDeltaTime < 1) return;
 
-            // only while we have snapshots.
-            // timeline starts when the first snapshot arrives.
+           // только пока у нас есть снимки.
+            // временная шкала начинается с момента получения первого снимка.
             if (snapshots.Count > 0)
             {
                 // snapshot interpolation
